@@ -1,0 +1,16 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+// Todos os comentarios abaixo, são a fins de estudos e aprendizado.
+model User {
+    id Int @id @default(autoincrement())  // "autoincrement" => Toda vez que for criando usuários, o primeiro será com ID 1, o segundo com ID 2, e assim por diante.
+    name String
+    email String @unique  //"@unique" => Garante que não haverá dois usuários com o mesmo e-mail.
+    password String 
+}
