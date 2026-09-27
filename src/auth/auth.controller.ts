@@ -6,10 +6,12 @@ export class AuthController {  //Controller => Responsável por mapear os EndPOI
   @Post('signup')
   async signup(@Body() body: SignUpDTO) {
     console.log(body);
+    return body;
   }
 
   @Post('signin')
   async signin(@Body() body: SignInDTO) {
     console.log(body)
+    return body;
   }
 }
