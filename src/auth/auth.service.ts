@@ -20,7 +20,12 @@ export class AuthService {
       throw new UnauthorizedException('User already exists');
     }
 
-    const user = await this.prismaService.user.create({ data });
+    const hashedPassword = await bcrypt.hash(data.password, 10);  //número "10" é um número de saltos que o bcrypt vai fazer quando estiver fazendo hash da senha, isso impede de gerar hashs iguais. 
+
+    const user = await this.prismaService.user.create({ data: {
+        ...data,
+        password: hashedPassword,
+    } });
 
     return {
         id: user.id,
